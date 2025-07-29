@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #2d5a27, #4a7c59);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+}
+
+#gameContainer {
+    position: relative;
+    border: 3px solid #8B4513;
+    border-radius: 10px;
+    background: #1a4a1a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#gameUI {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+#gameCanvas {
+    display: block;
+    background: linear-gradient(to bottom, 
+        #87CEEB 0%, 
+        #87CEEB 15%, 
+        #90EE90 15%, 
+        #90EE90 85%, 
+        #8B4513 85%, 
+        #8B4513 100%);
+}
+
+#startScreen, #gameOverScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid #4CAF50;
+    z-index: 20;
+}
+
+#startScreen h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#startScreen p, #gameOverScreen p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+button {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none !important;
+}
+
+#gameOverScreen h2 {
+    color: #ff4444;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
