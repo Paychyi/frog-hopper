@@ -5,13 +5,21 @@
 }
 
 body {
-    background: linear-gradient(135deg, #2d5a27, #4a7c59);
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #2d4a5a);
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     color: white;
+    animation: lightning 10s infinite;
+}
+
+@keyframes lightning {
+    0%, 90%, 100% { background: linear-gradient(135deg, #1a1a2e, #16213e, #2d4a5a); }
+    91%, 92% { background: linear-gradient(135deg, #4a4a6a, #5a5a7a, #6a6a8a); }
+    93%, 94% { background: linear-gradient(135deg, #1a1a2e, #16213e, #2d4a5a); }
+    95%, 96% { background: linear-gradient(135deg, #4a4a6a, #5a5a7a, #6a6a8a); }
 }
 
 #gameContainer {
@@ -40,12 +48,12 @@ body {
 #gameCanvas {
     display: block;
     background: linear-gradient(to bottom, 
-        #87CEEB 0%, 
-        #87CEEB 15%, 
-        #90EE90 15%, 
-        #90EE90 85%, 
-        #8B4513 85%, 
-        #8B4513 100%);
+        #4a5568 0%, 
+        #4a5568 15%, 
+        #2d3748 15%, 
+        #2d3748 85%, 
+        #1a202c 85%, 
+        #1a202c 100%);
 }
 
 #startScreen, #gameOverScreen {

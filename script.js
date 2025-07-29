@@ -24,6 +24,7 @@ class FrogHopper {
         this.logs = [];
         this.lilypads = [];
         this.particles = [];
+        this.raindrops = [];
         
         // Lane configurations
         this.lanes = [
@@ -39,6 +40,7 @@ class FrogHopper {
         
         this.initializeGame();
         this.setupEventListeners();
+        this.initializeRain();
         this.gameLoop();
     }
     
@@ -75,7 +77,9 @@ class FrogHopper {
         this.cars = [];
         this.logs = [];
         this.particles = [];
+        this.raindrops = [];
         this.initializeGame();
+        this.initializeRain();
         this.gameState = 'playing';
         document.getElementById('gameOverScreen').classList.add('hidden');
     }
@@ -159,6 +163,18 @@ class FrogHopper {
         }
     }
     
+    initializeRain() {
+        // Create initial raindrops
+        for (let i = 0; i < 100; i++) {
+            this.raindrops.push({
+                x: Math.random() * 800,
+                y: Math.random() * 600,
+                speed: Math.random() * 3 + 2,
+                length: Math.random() * 10 + 5
+            });
+        }
+    }
+    
     update() {
         if (this.gameState !== 'playing') return;
         
@@ -186,6 +202,18 @@ class FrogHopper {
             particle.y += particle.vy;
             particle.life--;
             return particle.life > 0;
+        });
+        
+        // Update raindrops
+        this.raindrops.forEach(drop => {
+            drop.y += drop.speed;
+            drop.x += Math.sin(drop.y * 0.01) * 0.5; // Slight drift
+            
+            // Reset raindrop when it goes off screen
+            if (drop.y > 600) {
+                drop.y = -drop.length;
+                drop.x = Math.random() * 800;
+            }
         });
         
         this.checkCollisions();
@@ -287,6 +315,7 @@ class FrogHopper {
         this.drawLanes();
         
         // Draw game objects
+        this.drawRain();
         this.drawCars();
         this.drawLogs();
         this.drawLilypads();
@@ -370,37 +399,22 @@ class FrogHopper {
     drawFrog() {
         const frog = this.frog;
         
-        // Frog body
-        this.ctx.fillStyle = '#228B22';
-        this.ctx.fillRect(frog.x + 5, frog.y + 10, 30, 20);
+        // Draw frog emoji
+        this.ctx.font = '40px serif';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('🐸', frog.x + frog.width/2, frog.y + frog.height - 5);
+    }
+    
+    drawRain() {
+        this.ctx.strokeStyle = 'rgba(173, 216, 230, 0.7)';
+        this.ctx.lineWidth = 1;
         
-        // Frog head
-        this.ctx.beginPath();
-        this.ctx.arc(frog.x + 20, frog.y + 15, 15, 0, Math.PI * 2);
-        this.ctx.fill();
-        
-        // Eyes
-        this.ctx.fillStyle = '#fff';
-        this.ctx.beginPath();
-        this.ctx.arc(frog.x + 15, frog.y + 10, 4, 0, Math.PI * 2);
-        this.ctx.fill();
-        this.ctx.beginPath();
-        this.ctx.arc(frog.x + 25, frog.y + 10, 4, 0, Math.PI * 2);
-        this.ctx.fill();
-        
-        // Pupils
-        this.ctx.fillStyle = '#000';
-        this.ctx.beginPath();
-        this.ctx.arc(frog.x + 15, frog.y + 10, 2, 0, Math.PI * 2);
-        this.ctx.fill();
-        this.ctx.beginPath();
-        this.ctx.arc(frog.x + 25, frog.y + 10, 2, 0, Math.PI * 2);
-        this.ctx.fill();
-        
-        // Legs
-        this.ctx.fillStyle = '#228B22';
-        this.ctx.fillRect(frog.x, frog.y + 25, 8, 10);
-        this.ctx.fillRect(frog.x + 32, frog.y + 25, 8, 10);
+        this.raindrops.forEach(drop => {
+            this.ctx.beginPath();
+            this.ctx.moveTo(drop.x, drop.y);
+            this.ctx.lineTo(drop.x, drop.y + drop.length);
+            this.ctx.stroke();
+        });
     }
     
     drawParticles() {
