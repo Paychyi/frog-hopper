@@ -111,3 +111,43 @@ button:active {
     font-size: 2.5em;
     margin-bottom: 20px;
 }
+
+#promptBubble {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0;
+}
+
+.bubble-content {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.bubble-content p {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.bubble-content strong {
+    color: #2d4a5a;
+    font-weight: bold;
+}
+
+.bubble-tail {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid rgba(255, 255, 255, 0.95);
+}
