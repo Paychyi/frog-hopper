@@ -400,19 +400,24 @@ class FrogHopper {
         const frog = this.frog;
         
         // Draw frog emoji
-        this.ctx.font = '40px serif';
+        this.ctx.font = '40px Arial';
         this.ctx.textAlign = 'center';
-        this.ctx.fillText('🐸', frog.x + frog.width/2, frog.y + frog.height - 5);
+        this.ctx.textBaseline = 'middle';
+        this.ctx.fillStyle = '#000';
+        this.ctx.fillText('🐸', frog.x + frog.width/2, frog.y + frog.height/2);
+        // Reset text alignment
+        this.ctx.textAlign = 'start';
+        this.ctx.textBaseline = 'alphabetic';
     }
     
     drawRain() {
-        this.ctx.strokeStyle = 'rgba(173, 216, 230, 0.7)';
-        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = 'rgba(173, 216, 230, 0.8)';
+        this.ctx.lineWidth = 2;
         
         this.raindrops.forEach(drop => {
             this.ctx.beginPath();
             this.ctx.moveTo(drop.x, drop.y);
-            this.ctx.lineTo(drop.x, drop.y + drop.length);
+            this.ctx.lineTo(drop.x - 2, drop.y + drop.length);
             this.ctx.stroke();
         });
     }

@@ -8,11 +8,13 @@ body {
     background: linear-gradient(135deg, #1a1a2e, #16213e, #2d4a5a);
     font-family: 'Arial', sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     color: white;
     animation: lightning 10s infinite;
+    padding: 20px;
 }
 
 @keyframes lightning {
@@ -28,6 +30,7 @@ body {
     border-radius: 10px;
     background: #1a4a1a;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 0;
 }
 
 #gameUI {
@@ -115,17 +118,17 @@ button:active {
 #promptBubble {
     position: relative;
     max-width: 600px;
-    margin: 20px auto;
+    margin: 30px auto 0;
     padding: 0;
 }
 
 .bubble-content {
     background: rgba(255, 255, 255, 0.95);
     color: #333;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 25px;
+    border-radius: 30px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    border: 3px solid rgba(255, 255, 255, 0.9);
     position: relative;
     backdrop-filter: blur(10px);
 }
@@ -133,6 +136,7 @@ button:active {
 .bubble-content p {
     margin: 8px 0;
     line-height: 1.4;
+    font-size: 14px;
 }
 
 .bubble-content strong {
@@ -140,14 +144,41 @@ button:active {
     font-weight: bold;
 }
 
-.bubble-tail {
+.thought-circles {
     position: absolute;
-    top: -15px;
+    bottom: -35px;
     left: 50%;
     transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 15px solid rgba(255, 255, 255, 0.95);
+}
+
+.thought-circle {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.thought-circle:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    left: 0;
+}
+
+.thought-circle:nth-child(2) {
+    width: 12px;
+    height: 12px;
+    bottom: -8px;
+    left: 15px;
+}
+
+.thought-circle:nth-child(3) {
+    width: 8px;
+    height: 8px;
+    bottom: -12px;
+    left: 25px;
+}
+
+.bubble-tail {
+    display: none;
 }
